@@ -37,5 +37,16 @@ for manager in managers:
 
     manager_list.append(manager_record)
 
-df = pd.DataFrame(manager_list)
+manual_updates = [
+    {
+        'manager_sb_code': '1058',
+        'manager_name': 'Ray Mathias',
+        'manager_start_date': dt.datetime.strptime('1985-02-12', '%Y-%m-%d'),
+        'manager_end_date': dt.datetime.strptime('1985-05-11', '%Y-%m-%d')
+    }
+    ]
+    
+manager_list.append(manager_record)
+
+df = pd.DataFrame(manager_list).drop_duplicates().reset_index(drop = True)
 df.to_csv('./data/managers_df.csv', index = False)
